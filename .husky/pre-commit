@@ -1,0 +1,43 @@
+#!/bin/sh
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+NC='\033[0m'
+
+. "$(dirname "$0")/_/husky.sh"
+
+echo -e "${YELLOW}Styling, testing and building project before committing...${NC}"
+
+# Check Prettier standards
+npm run check-format ||
+	(
+		echo -e "${RED}Prettier Check Failed. Run npm run format, add changes and try commit again.${NC}"
+		false
+	)
+
+# Check ESLint Standards
+npm run check-lint ||
+	(
+		echo -e "${RED}ESLint Check Failed.${NC}"
+		false
+	)
+
+# Check tsconfig standards
+npm run check-types ||
+	(
+		echo -e "${RED}Type check failed.${NC}"
+		false
+	)
+
+# If everything passes... Now we can commit
+echo -e "${GREEN}Code looks good. Trying to build now...${NC}"
+
+npm run build ||
+	(
+		echo -e "${RED}Next build failed.${NC}"
+		false
+	)
+
+# If everything passes... Now we can commit
+echo -e "${GREEN}Passed all checks. Committing...${NC}"
