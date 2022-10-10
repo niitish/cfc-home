@@ -10,7 +10,7 @@ const navItems: { name: string; link: string }[] = [
 	{ name: "Events", link: "/events" },
 	{ name: "Directory", link: "/directory" },
 	{ name: "Scrapbook", link: "/scrapbook" },
-	{ name: "Blog", link: "/Blog" },
+	{ name: "Blog", link: "/blog" },
 	{ name: "Join Us", link: "/join" },
 ];
 
