@@ -1,5 +1,10 @@
+# folders
 .github
-.next
 node_modules
+.next
+.husky
+out
+
+# configs
 next-env.d.ts
 package-lock.json
